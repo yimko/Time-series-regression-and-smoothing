@@ -63,7 +63,7 @@ forecast, p = model.forecast(train,m)
 ci = 1.96 * np.array(p)/np.sqrt(len(train))
 
 fig, ax = plt.subplots()
-x = np.arange(len(train)+1, len(train)+m)
+x = np.arange(len(close)-1, len(close)+m-2)
 ax.plot(x,forecast)
 ax.fill_between(x, (forecast-ci), (forecast+ci), color='b', alpha=.1)
 ```
@@ -102,4 +102,18 @@ ax1.plot(nk, label='normal kernel')
 ax1.plot(sg, label= 'savitzky golay')
 ax1.plot(fitls[0]+fitls[1]*np.arange(len(close)), label="ols")
 ax1.legend()
+```
+
+# Command-line interface
+## Time series estimation
+```python
+python main.py tsa -h
+```
+## Time series smoothing
+```python
+python main.py sm -h
+```
+## Time series simulation
+```python
+python main.py sim -h
 ```
